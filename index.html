@@ -149,73 +149,63 @@
             <div class="video-carousel" id="videoCarousel" style="display: flex; transition: transform 0.5s ease;">
               
               <!-- Video Pair 1 -->
-              <div class="video-comparison-item" style="flex: 0 0 100%; position: relative; width: 100%; height: 500px;">
+              <div class="video-comparison-item" style="flex: 0 0 100%; position: relative; width: 100%; height: 100%;">
                 <video class="video-lr" autoplay muted loop style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                   <source src="./static/videos/1_hr.mp4" type="video/mp4">
                 </video>
-                <div class="video-overlay" style="position: absolute; top: 0; right: 0; width: 50%; height: 100%; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);">
-                  <video class="video-hr" autoplay muted loop style="width: 200%; height: 100%; object-fit: cover; margin-left: -100%;">
+                <div class="video-overlay" style="position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden;">
+                  <video class="video-hr" autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
                     <source src="./static/videos/1_hr.mp4" type="video/mp4">
                   </video>
                 </div>
               </div>
-              
+        
               <!-- Video Pair 2 -->
-              <div class="video-comparison-item" style="flex: 0 0 100%; position: relative; width: 100%; height: 500px;">
+              <div class="video-comparison-item" style="flex: 0 0 100%; position: relative; width: 100%; height: 100%;">
                 <video class="video-lr" autoplay muted loop style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                   <source src="./static/videos/1_hr.mp4" type="video/mp4">
                 </video>
-                <div class="video-overlay" style="position: absolute; top: 0; right: 0; width: 50%; height: 100%; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);">
-                  <video class="video-hr" autoplay muted loop style="width: 200%; height: 100%; object-fit: cover; margin-left: -100%;">
+                <div class="video-overlay" style="position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden;">
+                  <video class="video-hr" autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
                     <source src="./static/videos/1_hr.mp4" type="video/mp4">
                   </video>
                 </div>
               </div>
-              
+        
               <!-- Video Pair 3 -->
-              <div class="video-comparison-item" style="flex: 0 0 100%; position: relative; width: 100%; height: 500px;">
+              <div class="video-comparison-item" style="flex: 0 0 100%; position: relative; width: 100%; height: 100%;">
                 <video class="video-lr" autoplay muted loop style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                   <source src="./static/videos/1_hr.mp4" type="video/mp4">
                 </video>
-                <div class="video-overlay" style="position: absolute; top: 0; right: 0; width: 50%; height: 100%; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);">
-                  <video class="video-hr" autoplay muted loop style="width: 200%; height: 100%; object-fit: cover; margin-left: -100%;">
+                <div class="video-overlay" style="position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden;">
+                  <video class="video-hr" autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
                     <source src="./static/videos/1_hr.mp4" type="video/mp4">
                   </video>
                 </div>
               </div>
-              
             </div>
-            
+        
             <!-- Split Line -->
             <div class="split-line" style="position: absolute; top: 0; left: 50%; width: 2px; height: 100%; background: white; transform: translateX(-50%); z-index: 50; box-shadow: 0 0 10px rgba(255,255,255,0.8);"></div>
-            
+        
             <!-- Slider Control -->
             <div class="slider-control" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; background: white; border: 3px solid #000; border-radius: 50%; width: 50px; height: 50px; cursor: grab; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
               <div style="width: 20px; height: 20px; background: #000; border-radius: 2px;"></div>
             </div>
-
-            
+        
             <!-- Navigation Buttons -->
-            <button class="nav-btn nav-prev" id="navPrev" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); z-index: 100; background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 50px; height: 50px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: all 0.3s ease;">
-              ‹
-            </button>
-            <button class="nav-btn nav-next" id="navNext" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); z-index: 100; background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 50px; height: 50px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: all 0.3s ease;">
-              ›
-            </button>
-            
+            <button class="nav-btn nav-prev" id="navPrev" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); z-index: 100; background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 50px; height: 50px; color: white; cursor: pointer;">‹</button>
+            <button class="nav-btn nav-next" id="navNext" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); z-index: 100; background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 50px; height: 50px; color: white; cursor: pointer;">›</button>
+        
             <!-- Labels -->
-            <div style="position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.7); color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 14px; z-index: 60;">
-              Low Resolution
-            </div>
-            <div style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.7); color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 14px; z-index: 60;">
-              High Resolution (Ours)
-            </div>
-            
-            <!-- Dots Indicator -->
+            <div style="position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.7); color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 14px; z-index: 60;">Low Resolution</div>
+            <div style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.7); color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 14px; z-index: 60;">High Resolution (Ours)</div>
+        
+            <!-- Dots -->
             <div class="carousel-dots" style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 100;">
-              <span class="dot active" data-slide="0" style="width: 12px; height: 12px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s ease;"></span>
-              <span class="dot" data-slide="1" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.3s ease;"></span>
-              <span class="dot" data-slide="2" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.3s ease;"></span>
+              <span class="dot active" data-slide="0" style="width: 12px; height: 12px; border-radius: 50%; background: white; cursor: pointer;"></span>
+              <span class="dot" data-slide="1" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer;"></span>
+              <span class="dot" data-slide="2" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer;"></span>
             </div>
           </div>
         </div>
@@ -223,6 +213,19 @@
     </div>
   </div>
 </section>
+
+<!-- Optional: GPU Rendering Hint -->
+<style>
+  .video-overlay {
+    will-change: width;
+    transition: width 0.05s linear;
+  }
+  .video-lr, .video-hr {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -232,131 +235,93 @@ document.addEventListener('DOMContentLoaded', function() {
   const navPrev = document.getElementById('navPrev');
   const navNext = document.getElementById('navNext');
   const dots = document.querySelectorAll('.dot');
-  
+
   let currentSlide = 0;
   let totalSlides = 3;
   let isDragging = false;
   let currentPosition = 50;
-  
-  // Slider drag functionality
+
   function startDrag(e) {
     isDragging = true;
     sliderControl.style.cursor = 'grabbing';
     e.preventDefault();
   }
-  
+
   function drag(e) {
     if (!isDragging) return;
-    
+
     const rect = document.querySelector('.video-carousel-container').getBoundingClientRect();
     const currentX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
     const newPosition = ((currentX - rect.left) / rect.width) * 100;
-    
+
     currentPosition = Math.max(0, Math.min(100, newPosition));
     updateSliderPosition();
   }
-  
+
   function stopDrag() {
     isDragging = false;
     sliderControl.style.cursor = 'grab';
   }
-  
+
   function updateSliderPosition() {
     sliderControl.style.left = currentPosition + '%';
     splitLine.style.left = currentPosition + '%';
-    
-    // Update clip-path for current slide
+
     const currentItem = carousel.children[currentSlide];
     const videoOverlay = currentItem.querySelector('.video-overlay');
-    const clipPath = `polygon(${currentPosition}% 0, 100% 0, 100% 100%, ${currentPosition}% 100%)`;
-    videoOverlay.style.clipPath = clipPath;
+    videoOverlay.style.width = `${currentPosition}%`;
   }
-  
-  // Carousel navigation
-  function goToSlide(slideIndex) {
-    currentSlide = slideIndex;
-    carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
-    
-    // Update dots
-    dots.forEach((dot, index) => {
-      if (index === slideIndex) {
-        dot.classList.add('active');
-        dot.style.background = 'white';
-      } else {
-        dot.classList.remove('active');
-        dot.style.background = 'rgba(255,255,255,0.5)';
-      }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+      dot.style.background = i === index ? 'white' : 'rgba(255,255,255,0.5)';
     });
-    
-    // Sync videos in current slide
     setTimeout(() => {
-      const currentItem = carousel.children[currentSlide];
-      const videoLR = currentItem.querySelector('.video-lr');
-      const videoHR = currentItem.querySelector('.video-hr');
-      if (videoLR && videoHR) {
-        videoHR.currentTime = videoLR.currentTime;
-      }
+      const item = carousel.children[currentSlide];
+      const videoLR = item.querySelector('.video-lr');
+      const videoHR = item.querySelector('.video-hr');
+      if (videoLR && videoHR) videoHR.currentTime = videoLR.currentTime;
     }, 100);
-    
-    // Update slider position for new slide
     updateSliderPosition();
   }
-  
+
   function nextSlide() {
-    const nextIndex = (currentSlide + 1) % totalSlides;
-    goToSlide(nextIndex);
+    goToSlide((currentSlide + 1) % totalSlides);
   }
-  
+
   function prevSlide() {
-    const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-    goToSlide(prevIndex);
+    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
   }
-  
-  // Event listeners
+
   sliderControl.addEventListener('mousedown', startDrag);
   document.addEventListener('mousemove', drag);
   document.addEventListener('mouseup', stopDrag);
-  
+
   sliderControl.addEventListener('touchstart', startDrag);
   document.addEventListener('touchmove', drag);
   document.addEventListener('touchend', stopDrag);
-  
+
   navNext.addEventListener('click', nextSlide);
   navPrev.addEventListener('click', prevSlide);
-  
-  // Dot navigation
+
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => goToSlide(index));
   });
-  
-  // Navigation button hover effects
-  navPrev.addEventListener('mouseenter', () => {
-    navPrev.style.background = 'rgba(0,0,0,0.9)';
-  });
-  navPrev.addEventListener('mouseleave', () => {
-    navPrev.style.background = 'rgba(0,0,0,0.7)';
-  });
-  
-  navNext.addEventListener('mouseenter', () => {
-    navNext.style.background = 'rgba(0,0,0,0.9)';
-  });
-  navNext.addEventListener('mouseleave', () => {
-    navNext.style.background = 'rgba(0,0,0,0.7)';
-  });
-  
-  // Video sync for all slides
+
   const allVideos = document.querySelectorAll('.video-lr');
   allVideos.forEach((video, index) => {
     video.addEventListener('timeupdate', () => {
-      const currentItem = carousel.children[index];
-      const videoHR = currentItem.querySelector('.video-hr');
+      const item = carousel.children[index];
+      const videoHR = item.querySelector('.video-hr');
       if (videoHR && Math.abs(video.currentTime - videoHR.currentTime) > 0.3) {
         videoHR.currentTime = video.currentTime;
       }
     });
   });
-  
-  // Initialize
+
   updateSliderPosition();
 });
 </script>
