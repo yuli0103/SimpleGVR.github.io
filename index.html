@@ -6,7 +6,7 @@
         content="A Simple Baseline for Latent-Cascaded Video Super-Resolution">
   <meta name="keywords" content="SimpleGVR">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
+  <title>A Simple Baseline for Latent-Cascaded Video Super-Resolution</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -267,14 +267,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update clip-path for current slide
     const currentItem = carousel.children[currentSlide];
     const videoOverlay = currentItem.querySelector('.video-overlay');
-    const clipPath = polygon(${currentPosition}% 0, 100% 0, 100% 100%, ${currentPosition}% 100%);
+    const clipPath = `polygon(${currentPosition}% 0, 100% 0, 100% 100%, ${currentPosition}% 100%)`;
     videoOverlay.style.clipPath = clipPath;
   }
   
   // Carousel navigation
   function goToSlide(slideIndex) {
     currentSlide = slideIndex;
-    carousel.style.transform = translateX(-${slideIndex * 100}%);
+    carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
     
     // Update dots
     dots.forEach((dot, index) => {
