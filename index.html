@@ -86,7 +86,7 @@
   <p>
     Our cascaded video generation framework operates within a latent space defined by a pre-trained VAE. The framework comprises two core components:
     (i) A computationally intensive base Text-to-Video (T2V) model, which employs a Diffusion Transformer (DiT) architecture to generate low-resolution video latent representations.
-    (ii) A cascaded latent video super-resolution model, termed SimpleGVR, which adopts a lightweight architecture to efficiently enhance the base model’s output into high-resolution video latent representations.
+    (ii) A cascaded latent video super-resolution model, termed SimpleGVR, which adopts a lightweight architecture to efficiently enhance the base model's output into high-resolution video latent representations.
   </p>
   <br>
   <img src="./static/images/pipeline.jpg" alt="Method Page 1" style="width: 100%; margin-bottom: 1rem;">
@@ -100,45 +100,110 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Result</h2>
+        <h2 class="title is-3">Results</h2>
         <div class="content has-text-justified">
-          <!-- You can fill in the results details here -->
+          <p>
+            We demonstrate the effectiveness of our SimpleGVR framework through comprehensive quantitative and qualitative evaluations. 
+            The following interactive comparison showcases the visual quality improvements achieved by our cascaded video super-resolution approach. 
+            Drag the slider to compare between low-resolution input and our high-resolution output.
+          </p>
+        </div>
+        
+        <!-- Video Comparison -->
+        <div class="publication-video" style="position: relative; margin: 2rem 0;">
+          <div class="video-comparison-wrapper" style="position: relative; width: 100%; height: 500px; overflow: hidden; border-radius: 8px;">
+            
+            <!-- Background Video (Low Resolution) -->
+            <video id="video1" autoplay muted loop style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+              <source src="./static/videos/1_hr.mp4" type="video/mp4">
+            </video>
+            
+            <!-- Foreground Video (High Resolution) -->
+            <div id="videoOverlay" style="position: absolute; top: 0; right: 0; width: 50%; height: 100%; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);">
+              <video id="video2" autoplay muted loop style="width: 200%; height: 100%; object-fit: cover; margin-left: -100%;">
+                <source src="./static/videos/1_hr.mp4" type="video/mp4">
+              </video>
+            </div>
+            
+            <!-- Split Line -->
+            <div id="splitLine" style="position: absolute; top: 0; left: 50%; width: 2px; height: 100%; background: white; transform: translateX(-50%); z-index: 50; box-shadow: 0 0 10px rgba(255,255,255,0.8);"></div>
+            
+            <!-- Slider Control -->
+            <div id="sliderControl" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; background: white; border: 3px solid #3273dc; border-radius: 50%; width: 50px; height: 50px; cursor: grab; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+              <div style="width: 20px; height: 20px; background: #3273dc; border-radius: 2px;"></div>
+            </div>
+            
+            <!-- Labels -->
+            <div style="position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.7); color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 14px;">
+              Low Resolution
+            </div>
+            <div style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.7); color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 14px;">
+              High Resolution (Ours)
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-  <section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Video Comparison Carousel</h2>
-    <div class="carousel js-flickity" data-flickity-options='{"wrapAround": true, "pageDots": true}'>
-
-      <!-- Video Comparison Cell 1 -->
-      <div class="carousel-cell">
-        <div class="twentytwenty-wrapper" id="compare1">
-          <video id="left1" src="./static/videos/1_hr.mp4" autoplay muted loop playsinline style="position:absolute; clip-path: inset(0 50% 0 0);"></video>
-          <video id="right1" src="./static/videos/1_hr.mp4" autoplay muted loop playsinline></video>
-          <input type="range" min="0" max="100" value="50" class="slider" style="position:absolute; bottom:10px; left:0; width:100%; z-index:10;">
-        </div>
-      </div>
-
-      <!-- Add more carousel-cell blocks for more comparisons -->
-
-    </div>
-  </div>
-</section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.pkgd.min.js"></script>
 <script>
-  document.querySelectorAll('.twentytwenty-wrapper').forEach((wrapper, i) => {
-    const slider = wrapper.querySelector('.slider');
-    const leftVideo = wrapper.querySelector('video:nth-child(1)');
-    slider.addEventListener('input', () => {
-      const val = slider.value;
-      leftVideo.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
-    });
+document.addEventListener('DOMContentLoaded', function() {
+  const sliderControl = document.getElementById('sliderControl');
+  const videoOverlay = document.getElementById('videoOverlay');
+  const splitLine = document.getElementById('splitLine');
+  const video1 = document.getElementById('video1');
+  const video2 = document.getElementById('video2');
+  
+  let isDragging = false;
+  let currentPosition = 50;
+  
+  function startDrag(e) {
+    isDragging = true;
+    sliderControl.style.cursor = 'grabbing';
+    e.preventDefault();
+  }
+  
+  function drag(e) {
+    if (!isDragging) return;
+    
+    const rect = document.querySelector('.video-comparison-wrapper').getBoundingClientRect();
+    const currentX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const newPosition = ((currentX - rect.left) / rect.width) * 100;
+    
+    currentPosition = Math.max(0, Math.min(100, newPosition));
+    updateSliderPosition();
+  }
+  
+  function stopDrag() {
+    isDragging = false;
+    sliderControl.style.cursor = 'grab';
+  }
+  
+  function updateSliderPosition() {
+    sliderControl.style.left = currentPosition + '%';
+    const clipPath = `polygon(${currentPosition}% 0, 100% 0, 100% 100%, ${currentPosition}% 100%)`;
+    videoOverlay.style.clipPath = clipPath;
+    splitLine.style.left = currentPosition + '%';
+  }
+  
+  // Mouse events
+  sliderControl.addEventListener('mousedown', startDrag);
+  document.addEventListener('mousemove', drag);
+  document.addEventListener('mouseup', stopDrag);
+  
+  // Touch events
+  sliderControl.addEventListener('touchstart', startDrag);
+  document.addEventListener('touchmove', drag);
+  document.addEventListener('touchend', stopDrag);
+  
+  // Video sync
+  video1.addEventListener('timeupdate', () => {
+    if (Math.abs(video1.currentTime - video2.currentTime) > 0.3) {
+      video2.currentTime = video1.currentTime;
+    }
   });
+});
 </script>
 
 </body>
